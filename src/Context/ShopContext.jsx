@@ -20,10 +20,10 @@ const [all_product, setAll_Product] = useState([]);
 const [cartItems, setCartItems] = useState(getDefaultCard());
 
 useEffect(()=>{
-fetch('http://localhost:4000/allproduct').then((response)=>response.json()).then((data)=>setAll_Product(data))
+fetch('https://e-commerce-backend-1-ix83.onrender.com/allproduct').then((response)=>response.json()).then((data)=>setAll_Product(data))
 
 if(localStorage.getItem('auth-token')){
-    fetch('http://localhost:4000/getcart',{
+    fetch('https://e-commerce-backend-1-ix83.onrender.com/getcart',{
         method:'POST',
        headers:{
             Accept:'application/from-data',
@@ -41,7 +41,7 @@ body: "",
 setCartItems((prev)=>({...prev,[itemId]:prev[itemId]+1}));
 // console.log(cartItems);
 if(localStorage.getItem('auth-token')){
-    fetch('http://localhost:4000/addtocart',{
+    fetch('https://e-commerce-backend-1-ix83.onrender.com/addtocart',{
         method:'POST',
         headers:{
             Accept:'application/from-data',
@@ -59,7 +59,7 @@ if(localStorage.getItem('auth-token')){
       const removeFromCart = (itemId) =>{
 setCartItems((prev)=>({...prev,[itemId]:prev[itemId]-1}));
 if(localStorage.getItem('auth-token')){
-      fetch('http://localhost:4000/removefromcart',{
+      fetch('https://e-commerce-backend-1-ix83.onrender.com/removefromcart',{
         method:'POST',
         headers:{
             Accept:'applocation/from-data',
