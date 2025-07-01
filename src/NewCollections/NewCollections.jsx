@@ -9,7 +9,7 @@ const NewCollections = () =>{
 
 
     useEffect(()=>{
-fetch('http://localhost:4000/newcollections')
+fetch('https://e-commerce-backend-1-ix83.onrender.com/newcollections')
 .then((response)=>response.json())
 .then((data)=>setNew_collection(data));
     },[])
