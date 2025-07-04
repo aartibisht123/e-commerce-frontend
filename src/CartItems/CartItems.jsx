@@ -6,6 +6,10 @@ import remove_icon from '../Assets/cart_cross_icon.png'
 
 const CartItems = () => {
     const {getTotalCartAmount,all_product,cartItems,removeFromCart} = useContext(ShopContext);
+    if (!all_product.length) {
+  return <div>Loading cart...</div>; // or just return null;
+}
+
 return(
     <div className="cartitems">
 <div className="cartitems-format-main">
