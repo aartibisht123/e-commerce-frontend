@@ -73,17 +73,32 @@ if(localStorage.getItem('auth-token')){
     .then((data)=>console.log(data))
 }
    };
-
-   const getTotalCartAmount = () =>{
-    let totalAmount = 0;
-    for(const item in cartItems){
-        if(cartItems[item]>0){
-            let itemInfo = all_product.find((product)=>product.id===Number(item))
-            totalAmount += itemInfo.new_price * cartItems[item];
-        } 
+const getTotalCartAmount = () => {
+  let totalAmount = 0;
+  for (const item in cartItems) {
+    if (cartItems[item] > 0) {
+      const itemInfo = all_product.find(
+        (product) => product.id === Number(item)
+      );
+      if (itemInfo) {
+        totalAmount += itemInfo.new_price * cartItems[item];
+      }
     }
-        return totalAmount;
-   }
+  }
+  return totalAmount;
+};
+
+  
+   // const getTotalCartAmount = () =>{
+   //  let totalAmount = 0;
+   //  for(const item in cartItems){
+   //      if(cartItems[item]>0){
+   //          let itemInfo = all_product.find((product)=>product.id===Number(item))
+   //          totalAmount += itemInfo.new_price * cartItems[item];
+   //      } 
+   //  }
+   //      return totalAmount;
+   // }
 
    // const getTotalCartItems = () =>{
    //  let totalItem = 0;
