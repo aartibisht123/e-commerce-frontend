@@ -76,20 +76,35 @@ if(localStorage.getItem('auth-token')){
 
 const getTotalCartAmount = () => {
   let totalAmount = 0;
+
+  if (!Array.isArray(all_product) || all_product.length === 0) {
+    console.warn("Product list is empty. Skipping total calculation.");
+    return 0;
+  }
+
   for (const item in cartItems) {
     if (cartItems[item] > 0) {
       const itemInfo = all_product.find(
-        (product) => product.id === Number(item)
+        (product) => Number(product.id) === Number(item)
       );
-      if (itemInfo && itemInfo.new_price !== undefined) {
-        totalAmount += itemInfo.new_price * cartItems[item];
-      } else {
-        console.warn(`Product with id=${item} not found or missing price`);
+
+      if (!itemInfo) {
+        console.warn(`Product with id ${item} not found in all_product`);
+        continue; // Skip to next item
       }
+
+      if (typeof itemInfo.new_price !== "number") {
+        console.warn(`Product with id ${item} has invalid price:`, itemInfo);
+        continue;
+      }
+
+      totalAmount += itemInfo.new_price * cartItems[item];
     }
   }
+
   return totalAmount;
 };
+
 
   
    // const getTotalCartAmount = () =>{
