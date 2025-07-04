@@ -73,6 +73,7 @@ if(localStorage.getItem('auth-token')){
     .then((data)=>console.log(data))
 }
    };
+
 const getTotalCartAmount = () => {
   let totalAmount = 0;
   for (const item in cartItems) {
@@ -80,8 +81,10 @@ const getTotalCartAmount = () => {
       const itemInfo = all_product.find(
         (product) => product.id === Number(item)
       );
-      if (itemInfo) {
+      if (itemInfo && itemInfo.new_price !== undefined) {
         totalAmount += itemInfo.new_price * cartItems[item];
+      } else {
+        console.warn(`Product with id=${item} not found or missing price`);
       }
     }
   }
