@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react'
 import './Popular.css'
 // import data_product from '../Assets/data'
